@@ -10,32 +10,32 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package io.instacount.client.exceptions;
+package io.instacount.client.model.shardedcounters.inputs;
+
+import java.math.BigInteger;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import io.instacount.client.model.Errors;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * An instance of {@link RuntimeException} for providing information about Instacount errors.
- *
- * @see "https://instacount.readme.io/docs/errors"
+ * A class for creating a new Counter resource in the Instacount API.
  */
 @Getter
 @RequiredArgsConstructor
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class InstacountClientException extends RuntimeException
+@ToString
+@EqualsAndHashCode
+public class DecrementShardedCounterInput
 {
+	@JsonProperty("amount")
 	@NonNull
-	private final Errors errors;
+	private final BigInteger amount;
 
-	public InstacountClientException(final Throwable t, final Errors errors)
-	{
-		super(t);
-		this.errors = errors;
-	}
+	@JsonProperty("async")
+	@NonNull
+	private final Boolean async;
 }

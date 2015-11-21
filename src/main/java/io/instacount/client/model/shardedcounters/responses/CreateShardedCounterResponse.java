@@ -10,32 +10,41 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package io.instacount.client.exceptions;
+package io.instacount.client.model.shardedcounters.responses;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import io.instacount.client.model.Errors;
+
+import com.google.common.base.Optional;
+import com.google.common.base.Preconditions;
+
+import feign.Response;
+import io.instacount.client.model.InstacountResponse;
+import io.instacount.client.model.headers.Quota;
 
 /**
- * An instance of {@link RuntimeException} for providing information about Instacount errors.
- *
- * @see "https://instacount.readme.io/docs/errors"
+ * A class for modeling HTTP responses that have no content, such as an HTTP 201, 204, and the like.
  */
 @Getter
-@RequiredArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class InstacountClientException extends RuntimeException
+public class CreateShardedCounterResponse extends InstacountResponse
 {
 	@NonNull
-	private final Errors errors;
+	private final Optional<CounterLocationInfo> optCounterInfo;
 
-	public InstacountClientException(final Throwable t, final Errors errors)
+	public CreateShardedCounterResponse(final Response response, final Quota quota,
+			final Optional<CounterLocationInfo> optCounterInfo)
 	{
-		super(t);
-		this.errors = errors;
+		super(response, quota);
+		this.optCounterInfo = Preconditions.checkNotNull(optCounterInfo);
 	}
+
+	public int getHttpResponseCode()
+	{
+		return getResponse().status();
+	}
+
 }

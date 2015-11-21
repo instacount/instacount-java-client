@@ -10,32 +10,25 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package io.instacount.client.exceptions;
+package io.instacount.client.model.shardedcounters.responses;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import io.instacount.client.model.Errors;
+import feign.Response;
+import io.instacount.client.model.InstacountResponse;
+import io.instacount.client.model.headers.Quota;
 
 /**
- * An instance of {@link RuntimeException} for providing information about Instacount errors.
- *
- * @see "https://instacount.readme.io/docs/errors"
+ * A class for modeling HTTP the response to an HTTP DELETE request to delete a sharded counter.
  */
 @Getter
-@RequiredArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class InstacountClientException extends RuntimeException
+public class DeleteShardedCounterResponse extends InstacountResponse
 {
-	@NonNull
-	private final Errors errors;
-
-	public InstacountClientException(final Throwable t, final Errors errors)
+	public DeleteShardedCounterResponse(final Response response, final Quota quota)
 	{
-		super(t);
-		this.errors = errors;
+		super(response, quota);
 	}
 }

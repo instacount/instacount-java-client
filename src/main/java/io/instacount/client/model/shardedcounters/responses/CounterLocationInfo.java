@@ -10,32 +10,26 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package io.instacount.client.exceptions;
+package io.instacount.client.model.shardedcounters.responses;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import io.instacount.client.model.Errors;
 
 /**
- * An instance of {@link RuntimeException} for providing information about Instacount errors.
- *
- * @see "https://instacount.readme.io/docs/errors"
+ * An internal class to model information about a newly created counter. All of the information in this class is taken
+ * from the Location header in the HTTP resposne.
  */
 @Getter
 @RequiredArgsConstructor
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class InstacountClientException extends RuntimeException
+@ToString
+@EqualsAndHashCode
+public class CounterLocationInfo
 {
 	@NonNull
-	private final Errors errors;
-
-	public InstacountClientException(final Throwable t, final Errors errors)
-	{
-		super(t);
-		this.errors = errors;
-	}
+	private final String locationUrl;
+	@NonNull
+	private final String counterName;
 }

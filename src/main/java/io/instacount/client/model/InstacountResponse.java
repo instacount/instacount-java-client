@@ -10,32 +10,33 @@
  * an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
  */
-package io.instacount.client.exceptions;
+package io.instacount.client.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import io.instacount.client.model.Errors;
+import feign.Response;
+import io.instacount.client.model.headers.Quota;
 
 /**
- * An instance of {@link RuntimeException} for providing information about Instacount errors.
- *
- * @see "https://instacount.readme.io/docs/errors"
+ * A class for modeling HTTP responses that have no content, such as an HTTP 201, 204, and the like.
  */
 @Getter
 @RequiredArgsConstructor
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class InstacountClientException extends RuntimeException
+@ToString
+@EqualsAndHashCode
+public abstract class InstacountResponse
 {
 	@NonNull
-	private final Errors errors;
+	private final Response response;
 
-	public InstacountClientException(final Throwable t, final Errors errors)
+	@NonNull
+	private final Quota quota;
+
+	public int getHttpResponseCode()
 	{
-		super(t);
-		this.errors = errors;
+		return response.status();
 	}
 }
