@@ -2,7 +2,7 @@
 A Java client for accessing the Instacount API.  This client is built using (Feign)[https://github.com/Netflix/feign] by Netflix.
 
 # Maven
-We haven't published this client to Maven Central, but will be shortly.  In the meantime, you will need to download the 
+We haven't published this client to Maven Central yet, but will shortly.  In the meantime, you will need to download the 
 client from here, and include the following dependency information:
                       
     <dependency>
@@ -46,10 +46,6 @@ instacount account.  For ease of use, we reccommend extending <b>AbstractInstaco
 Next, instantiate your client using the InstacountClient.Builder, like this:
 
     Instacount client = Instacount.Builder.build(params)
-
-For a compilable example, see this gist here:
-
-<script src="https://gist.github.com/sappenin/a94e9d1da4f51fb905eb.js"></script>
 
 # More Examples
 For more examples of how to use the Instacount API Java client, see the unit 
