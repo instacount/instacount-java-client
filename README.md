@@ -1,5 +1,4 @@
 # instacount-java-client
-=========
 [![Circle CI](https://circleci.com/gh/instacount/instacount-java-client/tree/master.svg?style=svg)](https://circleci.com/gh/instacount/instacount-java-client/tree/master)
 
 A Java client for accessing the Instacount API.  This client is built using (Feign)[https://github.com/Netflix/feign] by Netflix.
