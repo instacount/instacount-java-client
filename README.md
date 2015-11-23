@@ -1,4 +1,7 @@
 # instacount-java-client
+=========
+[![Circle CI](https://circleci.com/gh/instacount/instacount-java-client/tree/master.svg?style=svg)](https://circleci.com/gh/instacount/instacount-java-client/tree/master)
+
 A Java client for accessing the Instacount API.  This client is built using (Feign)[https://github.com/Netflix/feign] by Netflix.
 
 # Maven
@@ -38,9 +41,9 @@ instacount account.  For ease of use, we reccommend extending <b>AbstractInstaco
     	
     }
     
-Next, instantiate your client using the InstacountClient.Builder, like this:
+Next, instantiate your client using the <b>InstacountClient.Builder</b>, like this:
 
-    Instacount client = Instacount.Builder.build(params)
+    final Instacount client = Instacount.Builder.build(params);
 
 # More Examples
 For more examples of how to use the Instacount API Java client, see the unit 
