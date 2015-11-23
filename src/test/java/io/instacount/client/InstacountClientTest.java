@@ -657,11 +657,5 @@ public class InstacountClientTest
 			return Preconditions.checkNotNull(System.getenv("INSTACOUNT_READ_WRITE_KEY"),
 				"System Env variable 'INSTACOUNT_READ_WRITE_KEY' not specified!");
 		}
-
-		@Override
-		public String getClientIdentifier()
-		{
-			return "Instacount Client Test Harness";
-		}
 	}
 }

@@ -35,12 +35,7 @@ instacount account.  For ease of use, we reccommend extending <b>AbstractInstaco
     	{
     	    ... // Your Instacount Read-Only Application Key
     	}
-    
-    	@Override
-    	public String getClientIdentifier()
-    	{
-    		 ... // Your Instacount Read-Write Application Key
-    	}
+    	
     }
     
 Next, instantiate your client using the InstacountClient.Builder, like this:

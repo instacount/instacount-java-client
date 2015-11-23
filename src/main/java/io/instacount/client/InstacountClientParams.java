@@ -106,5 +106,11 @@ public interface InstacountClientParams extends RequestInterceptor
 				"You must specify a client identifier in order to make calls agains the Instacount API!");
 			requestTemplate.header(Constants.X_INSTACOUNT_CLIENT_ID, this.getClientIdentifier());
 		}
+
+		@Override
+		public String getClientIdentifier()
+		{
+			return "Instacount Java Client v1.0.0";
+		}
 	}
 }
