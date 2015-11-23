@@ -49,10 +49,10 @@ Next, instantiate your client using the InstacountClient.Builder, like this:
 
 For a compilable example, see this gist here:
 
-{% gist a94e9d1da4f51fb905eb %}
+<script src="https://gist.github.com/sappenin/a94e9d1da4f51fb905eb.js"></script>
 
 # More Examples
 For more examples of how to use the Instacount API Java client, see the unit 
-tests in (ClientTestHarness.java)[https://github.com/instacount/instacount-java-client/blob/master/src/test/java/io/instacount/client/InstacountClientTest.java].
+tests in [ClientTestHarness.java](https://github.com/instacount/instacount-java-client/blob/master/src/test/java/io/instacount/client/InstacountClientTest.java).
 
 
