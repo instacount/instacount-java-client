@@ -24,7 +24,6 @@ import feign.RequestInterceptor;
 import feign.RequestLine;
 import feign.jackson.JacksonEncoder;
 import feign.okhttp.OkHttpClient;
-import io.instacount.client.Constants.Links;
 import io.instacount.client.decoders.InstacountErrorDecoder;
 import io.instacount.client.decoders.InstacountJacksonDecoder;
 import io.instacount.client.exceptions.InstacountClientException;
@@ -214,11 +213,13 @@ public interface Instacount
 			requestInterceptorsBuilder.add(instacountClientParams);
 			requestInterceptorsBuilder.add(additionalRequestInterceptors);
 
-			return new InstacountWrapper(Feign.builder().client(new OkHttpClient()).logLevel(Level.FULL)
-				.logger(new JavaLogger().appendToFile("httpLog.txt"))
-				.errorDecoder(new InstacountErrorDecoder(objectMapper)).encoder(new JacksonEncoder(objectMapper))
-				.decoder(new InstacountJacksonDecoder(objectMapper))
-				.requestInterceptors(requestInterceptorsBuilder.build()).target(InstacountFeign.class, Links.API_URL));
+			return new InstacountWrapper(
+				Feign.builder().client(new OkHttpClient()).logLevel(Level.FULL).logger(new JavaLogger()
+			// .appendToFile("httpLog.txt")
+			).errorDecoder(new InstacountErrorDecoder(objectMapper)).encoder(new JacksonEncoder(objectMapper))
+					.decoder(new InstacountJacksonDecoder(objectMapper))
+					.requestInterceptors(requestInterceptorsBuilder.build())
+					.target(InstacountFeign.class, instacountClientParams.getInstacountRootUrl()));
 		}
 
 		/**
