@@ -16,6 +16,7 @@ import com.google.common.base.Preconditions;
 
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
+import io.instacount.client.Constants.Links;
 
 /**
  * An implementation of {@link RequestInterceptor} for supplying proper Instacount Authentication headers.
@@ -56,6 +57,13 @@ public interface InstacountClientParams extends RequestInterceptor
 	 * @return
 	 */
 	String getClientIdentifier();
+
+	/**
+	 * The root URL, including http scheme, for the instacount server.
+	 * 
+	 * @return
+	 */
+	String getInstacountRootUrl();
 
 	/**
 	 * A default implementation of {@link InstacountClientParams}.
@@ -111,6 +119,16 @@ public interface InstacountClientParams extends RequestInterceptor
 		public String getClientIdentifier()
 		{
 			return "Instacount Java Client v1.0.0";
+		}
+
+		/**
+		 * Provided here by default, but overidable by subclasses, for example, for testing purposes.
+		 * 
+		 * @return
+		 */
+		public String getInstacountRootUrl()
+		{
+			return Links.API_URL;
 		}
 	}
 }
