@@ -15,3 +15,5 @@ instacount-java-client.iml
 target
 httpLog.txt*
 .DS_Store
+pom.xml.releaseBackup
+release.properties
