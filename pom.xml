@@ -33,7 +33,7 @@
 
     <groupId>io.instcount</groupId>
     <artifactId>instacount-java-client</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>Instacount API Java Client</name>
     <description>Java client for the Instacount API based upon the Netflix Feign library.</description>
     <url>https://github.com/instacount/instacount-java-client</url>
