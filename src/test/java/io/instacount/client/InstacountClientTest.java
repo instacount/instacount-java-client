@@ -244,7 +244,7 @@ public class InstacountClientTest
 		final String counterDescription = "Sample description from ClientTestHarness.java\"";
 
 		final CreateShardedCounterInput createCounterInput = new CreateShardedCounterInput(counterName,
-			Optional.of(counterDescription), 2, ShardedCounterStatusInput.READ_ONLY_COUNT);
+			Optional.of(counterDescription), 3, ShardedCounterStatusInput.READ_ONLY_COUNT);
 
 		final CreateShardedCounterResponse actualResponse = this.client.createShardedCounter(createCounterInput);
 
@@ -355,7 +355,7 @@ public class InstacountClientTest
 
 		// Next, update all values, and assert the differences...
 		final UpdateShardedCounterInput updateCounterInput = new UpdateShardedCounterInput(counterName,
-			Optional.of("New Description"), 2, ShardedCounterStatusInput.READ_ONLY_COUNT);
+			Optional.of("New Description"), 3, ShardedCounterStatusInput.READ_ONLY_COUNT);
 		final UpdateShardedCounterResponse updatedShardedCounterResponse = client.updateShardedCounter(counterName,
 			updateCounterInput);
 
