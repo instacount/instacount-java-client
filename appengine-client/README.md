@@ -2,11 +2,19 @@
 A Java client for accessing the Instacount API from inside of a Google App Engine runtime.
   
 # Basics
-Using the Instacount Java client for App Engine is easy.  First, create an instance of the <b>InstacountClientParams</b>.  This will be 
+Using the Instacount Java client for App Engine is easy.  
+
+First, create an instance of <b>InstacountClientParams</b>.  This will be 
 used to supply your client implementation with the proper credentials (Application Id and Key) to allow it to access your 
-instacount account.  It will also be used to supply an actual HTTP implementation.  For ease of use, we recommend extending 
+instacount account.  It will also be used to supply an actual HTTP implementation.  
+
+For ease of use, we recommend extending 
 <b>AbstractInstacountClientParams</b>, like this:
  
+    /**
+    * An extension of {@link AbstractInstacountClientParams} that allows implementors to provide application-specific 
+    * credentials and other information necessary to bootstrap the InstacountClient. 
+    */
     public class MyClientParams extends AbstractInstacountClientParams {
     	
     	@Override

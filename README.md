@@ -15,11 +15,18 @@ include the following dependency information:
     </dependency>
 
 # Basics
-Using the Instacount Java client is easy.  First, create an instance of the <b>InstacountClientParams</b>.  This will be 
-used to supply your client implementation with the proper credentials (Application Id and Key) to allow it to access your 
-instacount account.  It will also be used to supply an actual HTTP implementation.  For ease of use, we recommend 
-extending <b>AbstractInstacountClientParams</b>, like this:
+Using the Instacount Java client is easy.  
+
+First, create an instance of <b>InstacountClientParams</b>.  This will be used to supply your client implementation with
+ the proper credentials (Application Id and Key) to allow it to access your instacount account.  It will also be used to
+ supply an actual HTTP implementation.  
+
+For ease of use, we recommend extending <b>AbstractInstacountClientParams</b>, like this:
  
+    /**
+    * An extension of {@link AbstractInstacountClientParams} that allows implementors to provide application-specific 
+    * credentials and other information necessary to bootstrap the InstacountClient. 
+    */
     public class MyClientParams extends AbstractInstacountClientParams {
     	
     	@Override
@@ -46,13 +53,12 @@ Next, instantiate your client using the <b>InstacountClient.Builder</b>, like th
     final Instacount client = Instacount.Builder.build(params);
 
 # Instacount Client on Google App Engine
-The Instacount client uses Square's [OKHttp](https://github.com/square/okhttp) client for actual HTTP calls to instacount.  
-However, Square's library (as well as Apache's HTTPClient) is not supported inside of the Google App Engine runtime.  
-If you're running the Instacount client inside of the Google App Engine runtime, then you'll want to leverage our App 
-Engine client which uses Google's [URLFetch](https://cloud.google.com/appengine/docs/java/urlfetch/) service as the HTTP 
-provider for the client.
+The Instacount client uses Square's [OKHttp](https://github.com/square/okhttp) client for actual HTTP calls.  However, 
+Square's library (as well as Apache's HTTPClient) is not supported inside of the Google App Engine runtime.  Thus, if you're 
+using the Instacount client inside of Google App Engine, then you'll want to leverage our App Engine client that uses 
+Google's [URLFetch](https://cloud.google.com/appengine/docs/java/urlfetch/) service as its HTTP implementation.
 
-For more information about how to configure the Instacount client inside of Google App Engine, please see here.
+For more information about how to configure the Instacount client inside of Google App Engine, please see [here](https://github.com/instacount/instacount-java-client/tree/master/appengine-client).
 
 
 # More Examples
