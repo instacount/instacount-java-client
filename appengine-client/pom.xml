@@ -26,7 +26,7 @@
 
     <groupId>io.instacount</groupId>
     <artifactId>instacount-java-client-appengine</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <name>Instacount API Java Client for Appengine</name>
     <description>Java client for the Instacount API based upon the Netflix Feign library for use inside of Google
         Appengine

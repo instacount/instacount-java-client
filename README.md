@@ -10,7 +10,7 @@ include the following dependency information:
                       
     <dependency>
          <groupId>io.instcount</groupId>
-         <artifactId>instacount-java-client</artifactId>
+         <artifactId>instacount-java-client-appengine</artifactId>
         <version>1.0.2-SNAPSHOT</version>
     </dependency>
 

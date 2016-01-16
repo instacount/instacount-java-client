@@ -1,6 +1,25 @@
 # Instacount Java Client for Google App Engine
 A Java client for accessing the Instacount API from inside of a Google App Engine runtime.
-  
+
+# Maven
+We haven't published this client to Maven Central yet, but will shortly.  In the meantime, you will need to download the 
+client from [here](https://github.com/instacount/instacount-java-client/releases/tag/instacount-java-client-1.0.2), and 
+include the following dependency information:
+    
+    <!-- The main Instacount API Java Client -->
+    <dependency>
+         <groupId>io.instcount</groupId>
+         <artifactId>instacount-java-client</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- Additional dependencies to use the Instacount API Java Client inside of App Engine -->
+     <dependency>
+        <groupId>io.instcount</groupId>
+        <artifactId>instacount-java-client</artifactId>
+        <version>1.0.2-SNAPSHOT</version>
+     </dependency>
+    
 # Basics
 Using the Instacount Java client for App Engine is easy.  
 
