@@ -17,4 +17,4 @@ httpLog.txt*
 .DS_Store
 pom.xml.releaseBackup
 release.properties
-appengine-client/WEB-INF/appengine-generated/datastore-indexes-auto.xml
+instacount-java-client-appengine/WEB-INF/appengine-generated/datastore-indexes-auto.xml
