@@ -17,7 +17,8 @@ include the following dependency information:
 # Basics
 Using the Instacount Java client is easy.  First, create an instance of the <b>InstacountClientParams</b>.  This will be 
 used to supply your client implementation with the proper credentials (Application Id and Key) to allow it to access your 
-instacount account.  For ease of use, we reccommend extending <b>AbstractInstacountClientParams</b>, like this:
+instacount account.  It will also be used to supply an actual HTTP implementation.  For ease of use, we recommend 
+extending <b>AbstractInstacountClientParams</b>, like this:
  
     public class MyClientParams extends AbstractInstacountClientParams {
     	
@@ -37,8 +38,7 @@ instacount account.  For ease of use, we reccommend extending <b>AbstractInstaco
     	public String getInstacountReadWriteApplicationKey()
     	{
     	    ... // Your Instacount Read-Only Application Key
-    	}
-    	
+    	}    	
     }
     
 Next, instantiate your client using the <b>InstacountClient.Builder</b>, like this:
@@ -47,15 +47,16 @@ Next, instantiate your client using the <b>InstacountClient.Builder</b>, like th
 
 # Instacount Client on Google App Engine
 The Instacount client uses Square's [OKHttp](https://github.com/square/okhttp) client for actual HTTP calls to instacount.  
-However, this library (as well as Apache's HTTP Client) is not supported in the Google App Engine runtime.  If you're running
-the Instacount client inside of the Google App Engine runtime, then you'll want to leverage our App Engine client which 
-uses Google's [URLFetch](https://cloud.google.com/appengine/docs/java/urlfetch/) service as the HTTP provider for the client.
+However, Square's library (as well as Apache's HTTPClient) is not supported inside of the Google App Engine runtime.  
+If you're running the Instacount client inside of the Google App Engine runtime, then you'll want to leverage our App 
+Engine client which uses Google's [URLFetch](https://cloud.google.com/appengine/docs/java/urlfetch/) service as the HTTP 
+provider for the client.
 
 For more information about how to configure the Instacount client inside of Google App Engine, please see here.
 
 
 # More Examples
 For more examples of how to use the Instacount API Java client, see the unit 
-tests in [ClientTestHarness.java](https://github.com/instacount/instacount-java-client/blob/master/src/test/java/io/instacount/client/InstacountClientTest.java).
+tests in [InstacountClientTest.java](https://github.com/instacount/instacount-java-client/blob/master/src/test/java/io/instacount/client/InstacountClientTest.java).
 
 
