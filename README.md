@@ -58,7 +58,7 @@ Square's library (as well as Apache's HTTPClient) is not supported inside of the
 using the Instacount client inside of Google App Engine, then you'll want to leverage our App Engine client that uses 
 Google's [URLFetch](https://cloud.google.com/appengine/docs/java/urlfetch/) service as its HTTP implementation.
 
-For more information about how to configure the Instacount client inside of Google App Engine, please see [here](https://github.com/instacount/instacount-java-client/tree/master/appengine-client).
+For more information about how to configure the Instacount client inside of Google App Engine, please see [here](https://github.com/instacount/instacount-java-client/tree/master/instacount-java-client-appengine).
 
 
 # More Examples
