@@ -10,10 +10,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-instacount-java-client.iml
+*.iml
 .idea
 target
 httpLog.txt*
 .DS_Store
 pom.xml.releaseBackup
 release.properties
+appengine-client/WEB-INF/appengine-generated/datastore-indexes-auto.xml

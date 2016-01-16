@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2015 Instacount Inc. (developers@instacount.io)
+ * Copyright (C) 2016 Instacount Inc. (developers@instacount.io)
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
  * the License. You may obtain a copy of the License at
@@ -20,16 +20,20 @@ import static org.mockito.Mockito.mock;
 import java.math.BigInteger;
 import java.util.UUID;
 
-import org.apache.commons.lang3.StringUtils;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
+import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import com.google.appengine.tools.development.testing.LocalURLFetchServiceTestConfig;
 import com.google.common.base.Optional;
 import com.google.common.base.Preconditions;
 
+import feign.Client;
 import io.instacount.client.Constants.Links;
 import io.instacount.client.InstacountClientParams.AbstractInstacountClientParams;
 import io.instacount.client.exceptions.InstacountClientException;
+import io.instacount.client.http.AppengineClient;
 import io.instacount.client.model.Errors;
 import io.instacount.client.model.Errors.Error;
 import io.instacount.client.model.InstacountResponse;
@@ -57,11 +61,15 @@ public class InstacountClientTest
 	private static final boolean SYNC = false;
 	private static final boolean ASYNC = true;
 
-	private static Instacount client;
+	private LocalServiceTestHelper helper = null;
+	private Instacount client;
 
-	@BeforeClass
-	public static void before()
+	@Before
+	public void before()
 	{
+		helper = new LocalServiceTestHelper(new LocalURLFetchServiceTestConfig());
+		helper.setUp();
+
 		final AbstractInstacountClientParams params = new AbstractInstacountClientParams(false)
 		{
 			@Override
@@ -74,8 +82,9 @@ public class InstacountClientTest
 			@Override
 			public String getInstacountReadOnlyApplicationKey()
 			{
-				return Preconditions.checkNotNull(System.getenv("INSTACOUNT_READ_ONLY_KEY"),
-					"System Env variable 'INSTACOUNT_READ_ONLY_KEY' not specified!");
+				// return Preconditions.checkNotNull(System.getenv("INSTACOUNT_READ_ONLY_KEY"),
+				// "System Env variable 'INSTACOUNT_READ_ONLY_KEY' not specified!");
+				return System.getenv("INSTACOUNT_READ_ONLY_KEY");
 			}
 
 			@Override
@@ -84,20 +93,22 @@ public class InstacountClientTest
 				return Preconditions.checkNotNull(System.getenv("INSTACOUNT_READ_WRITE_KEY"),
 					"System Env variable 'INSTACOUNT_READ_WRITE_KEY' not specified!");
 			}
+
+			@Override
+			public Client getClient()
+			{
+				return new AppengineClient(URLFetchServiceFactory.getURLFetchService());
+			}
 		};
 
-		final String accessToken = System.getenv("GOOGLE_ACCOUNTS_OAUTH_ACCESS_TOKEN");
-		if (!StringUtils.isBlank(accessToken))
-		{
-			final InstacountOAuth2BearerRequestInterceptor oauth2 = new InstacountOAuth2BearerRequestInterceptor.Impl(
-				accessToken);
-			client = Instacount.Builder.build(params, oauth2);
-		}
-		else
-		{
-			client = Instacount.Builder.build(params);
-		}
+		client = Instacount.Builder.build(params);
 	}
+
+	// @AfterClass
+	// public static void after()
+	// {
+	// helper.tearDown();
+	// }
 
 	/////////////////////////////
 	// Sharded Counter Happy Path

@@ -5,12 +5,13 @@ A Java client for accessing the Instacount API.  This client is built using [Fei
 
 # Maven
 We haven't published this client to Maven Central yet, but will shortly.  In the meantime, you will need to download the 
-client from here, and include the following dependency information:
+client from [here](https://github.com/instacount/instacount-java-client/releases/tag/instacount-java-client-1.0.2), and 
+include the following dependency information:
                       
     <dependency>
          <groupId>io.instcount</groupId>
          <artifactId>instacount-java-client</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.2-SNAPSHOT</version>
     </dependency>
 
 # Basics
@@ -43,6 +44,15 @@ instacount account.  For ease of use, we reccommend extending <b>AbstractInstaco
 Next, instantiate your client using the <b>InstacountClient.Builder</b>, like this:
 
     final Instacount client = Instacount.Builder.build(params);
+
+# Instacount Client on Google App Engine
+The Instacount client uses Square's [OKHttp](https://github.com/square/okhttp) client for actual HTTP calls to instacount.  
+However, this library (as well as Apache's HTTP Client) is not supported in the Google App Engine runtime.  If you're running
+the Instacount client inside of the Google App Engine runtime, then you'll want to leverage our App Engine client which 
+uses Google's [URLFetch](https://cloud.google.com/appengine/docs/java/urlfetch/) service as the HTTP provider for the client.
+
+For more information about how to configure the Instacount client inside of Google App Engine, please see here.
+
 
 # More Examples
 For more examples of how to use the Instacount API Java client, see the unit 

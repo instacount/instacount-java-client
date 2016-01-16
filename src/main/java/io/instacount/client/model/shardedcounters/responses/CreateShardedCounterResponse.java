@@ -46,5 +46,4 @@ public class CreateShardedCounterResponse extends InstacountResponse
 	{
 		return getResponse().status();
 	}
-
 }

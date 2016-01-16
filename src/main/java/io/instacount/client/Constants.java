@@ -20,6 +20,7 @@ package io.instacount.client;
 public final class Constants
 {
 	public static final String X_INSTACOUNT_CLIENT_ID = "X-Instacount-Client-Id";
+	public static final String USER_AGENT = "User-Agent";
 
 	/**
 	 * A class that provides constants for various links used by the client.

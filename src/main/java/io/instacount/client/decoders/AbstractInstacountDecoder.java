@@ -16,6 +16,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.RuntimeJsonMappingException;
 import com.google.common.base.Optional;
@@ -97,7 +98,7 @@ public abstract class AbstractInstacountDecoder
 			final Errors errorsWithoutHttpCode = objectMapper.readValue(response.body().asInputStream(), Errors.class);
 			return new Errors(response.status(), errorsWithoutHttpCode.getErrors());
 		}
-		catch (IOException e)
+		catch (Exception e)
 		{
 			throw new InstacountClientException(e, Errors.empty(response.status()));
 		}

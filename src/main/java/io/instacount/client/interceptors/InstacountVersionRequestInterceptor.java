@@ -12,6 +12,15 @@
  */
 package io.instacount.client.interceptors;
 
+import java.util.Collection;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
+
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import io.instacount.client.Constants;
@@ -30,7 +39,36 @@ public interface InstacountVersionRequestInterceptor extends RequestInterceptor
 		public void apply(final RequestTemplate requestTemplate)
 		{
 			requestTemplate.header("Accept", Constants.ApiVersions.API_VERSION_1);
-			requestTemplate.header("Content-Type", Constants.ApiVersions.API_VERSION_1);
+
+			if (StringUtils.equalsIgnoreCase("POST", requestTemplate.method())
+				|| StringUtils.equalsIgnoreCase("PUT", requestTemplate.method()))
+			{
+				if (requestTemplate.body() == null)
+				{
+					requestTemplate.body("");
+				}
+				else
+				{
+					// Remove the Content-Length Header because it will be sourced from the actual body, internally.
+					final Map<String, Collection<String>> filteredHeaders = ImmutableMap
+						.copyOf(Maps.filterKeys(requestTemplate.headers(), new Predicate<String>()
+						{
+							@Override
+							public boolean apply(final String headerName)
+							{
+								return !StringUtils.equalsIgnoreCase("Content-Length", headerName);
+							}
+						}));
+
+					// Clear the headers...
+					requestTemplate.headers(null);
+					// Add filtered headers back...
+					requestTemplate.headers(filteredHeaders);
+				}
+
+				// Last but not least, always set the Content-Type to be the Instacount version.
+				requestTemplate.header("Content-Type", Constants.ApiVersions.API_VERSION_1);
+			}
 		}
 	}
 }

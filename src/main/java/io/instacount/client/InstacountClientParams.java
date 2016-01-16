@@ -14,8 +14,10 @@ package io.instacount.client;
 
 import com.google.common.base.Preconditions;
 
+import feign.Client;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
+import feign.okhttp.OkHttpClient;
 import io.instacount.client.Constants.Links;
 
 /**
@@ -66,6 +68,13 @@ public interface InstacountClientParams extends RequestInterceptor
 	String getInstacountRootUrl();
 
 	/**
+	 * The {@link Client} that the Instacount API client should use.
+	 * 
+	 * @return
+	 */
+	Client getClient();
+
+	/**
 	 * A default implementation of {@link InstacountClientParams}.
 	 */
 	abstract class AbstractInstacountClientParams implements InstacountClientParams
@@ -111,8 +120,9 @@ public interface InstacountClientParams extends RequestInterceptor
 			}
 
 			Preconditions.checkNotNull(this.getClientIdentifier(),
-				"You must specify a client identifier in order to make calls agains the Instacount API!");
+				"You must specify a client identifier in order to make calls against the Instacount API!");
 			requestTemplate.header(Constants.X_INSTACOUNT_CLIENT_ID, this.getClientIdentifier());
+			requestTemplate.header(Constants.USER_AGENT, this.getClientIdentifier());
 		}
 
 		@Override
@@ -126,9 +136,16 @@ public interface InstacountClientParams extends RequestInterceptor
 		 * 
 		 * @return
 		 */
+		@Override
 		public String getInstacountRootUrl()
 		{
 			return Links.API_URL;
+		}
+
+		@Override
+		public Client getClient()
+		{
+			return new OkHttpClient();
 		}
 	}
 }
