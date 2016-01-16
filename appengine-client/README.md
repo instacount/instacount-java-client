@@ -16,7 +16,7 @@ include the following dependency information:
     <!-- Additional dependencies to use the Instacount API Java Client inside of App Engine -->
      <dependency>
         <groupId>io.instcount</groupId>
-        <artifactId>instacount-java-client</artifactId>
+        <artifactId>instacount-java-client-appengine</artifactId>
         <version>1.0.2-SNAPSHOT</version>
      </dependency>
     
