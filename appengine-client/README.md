@@ -4,7 +4,7 @@ A Java client for accessing the Instacount API from inside of a Google App Engin
 # Basics
 Using the Instacount Java client for App Engine is easy.  
 
-First, create an instance of <b>InstacountClientParams</b> like normal, but be sure to override the <b>getClient<b> method
+First, create an instance of <b>InstacountClientParams</b> like normal, but be sure to override the <b>getClient</b> method
 to return a new <b>AppengineClient</b>.  
 
 For ease of use, we recommend extending <b>AbstractInstacountClientParams</b>, like this:
