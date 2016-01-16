@@ -128,7 +128,7 @@ public interface InstacountClientParams extends RequestInterceptor
 		@Override
 		public String getClientIdentifier()
 		{
-			return "Instacount Java Client v1.0.0";
+			return "Instacount Java Client v1.0.2";
 		}
 
 		/**
