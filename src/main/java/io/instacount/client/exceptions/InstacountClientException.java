@@ -15,8 +15,9 @@ package io.instacount.client.exceptions;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
+
+import com.google.common.base.Preconditions;
 import io.instacount.client.model.Errors;
 
 /**
@@ -25,7 +26,6 @@ import io.instacount.client.model.Errors;
  * @see "https://instacount.readme.io/docs/errors"
  */
 @Getter
-@RequiredArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class InstacountClientException extends RuntimeException
@@ -33,9 +33,26 @@ public class InstacountClientException extends RuntimeException
 	@NonNull
 	private final Errors errors;
 
+	/**
+	 * Required args constructor.
+	 * 
+	 * @param errors An instance of {@link Errors}.
+	 */
+	public InstacountClientException(final Errors errors)
+	{
+		this.errors = Preconditions.checkNotNull(errors);
+	}
+
+	/**
+	 * Required args constructor.
+	 * 
+	 * @param t An instance of {@link Throwable}.
+	 * @param errors An instance of {@link Errors}.
+	 */
 	public InstacountClientException(final Throwable t, final Errors errors)
 	{
 		super(t);
 		this.errors = errors;
 	}
+
 }
