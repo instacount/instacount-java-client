@@ -9,7 +9,7 @@ client from [here](https://github.com/instacount/instacount-java-client/releases
 include the following dependency information:
                       
     <dependency>
-         <groupId>io.instcount</groupId>
+         <groupId>io.instacount</groupId>
          <artifactId>instacount-java-client</artifactId>
         <version>1.0.2-SNAPSHOT</version>
     </dependency>

@@ -8,14 +8,14 @@ include the following dependency information:
     
     <!-- The main Instacount API Java Client -->
     <dependency>
-         <groupId>io.instcount</groupId>
+         <groupId>io.instacount</groupId>
          <artifactId>instacount-java-client</artifactId>
         <version>1.0.2-SNAPSHOT</version>
     </dependency>
     
     <!-- Additional dependencies to use the Instacount API Java Client inside of App Engine -->
      <dependency>
-        <groupId>io.instcount</groupId>
+        <groupId>io.instacount</groupId>
         <artifactId>instacount-java-client-appengine</artifactId>
         <version>1.0.2-SNAPSHOT</version>
      </dependency>
