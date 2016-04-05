@@ -66,6 +66,6 @@ Next, instantiate your client using the <b>InstacountClient.Builder</b>, like th
 
 # More Examples
 For more examples of how to use the Instacount API Java client, see the unit 
-tests in [InstacountClientTest.java](https://github.com/instacount/instacount-java-client/blob/master/appengine-client/src/test/java/io/instacount/client/InstacountClientTest.java).
+tests in [InstacountClientTest.java](https://github.com/instacount/instacount-java-client/blob/master/instacount-java-client-appengine/src/test/java/io/instacount/client/InstacountClientTest.java).
 
 
